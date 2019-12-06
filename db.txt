@@ -1,0 +1,21 @@
+CREATE TABLE machines (
+	id VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE reservations (
+	day INTEGER NOT NULL,
+	month INTEGER NOT NULL,
+	hour INTEGER NOT NULL,
+	cancellation_code VARCHAR(50),
+	machine VARCHAR(20) NOT NULL,
+	FOREIGN KEY (machine) REFERENCES machines(id),
+	PRIMARY KEY (machine,day,month,hour)
+);
+
+INSERT INTO machines VALUES('W1');
+INSERT INTO machines VALUES('W2');
+INSERT INTO machines VALUES('D1');
+INSERT INTO machines VALUES('D2');
+
+INSERT INTO reservations VALUES(9, 12, 15, 123, 'W1');
+INSERT INTO reservations VALUES(9, 12, 15, 'abc', 'D1');

@@ -1,0 +1,20 @@
+.slot {
+	height: 1em;
+	width: 1em;
+}
+
+.free {
+	background-color: lightblue;
+}
+
+.reserved {
+	background-color: maroon;
+}
+
+.reserving {
+	background-color: salmon;
+}
+
+.dereserving {
+	background-color: lightslategray;
+}
