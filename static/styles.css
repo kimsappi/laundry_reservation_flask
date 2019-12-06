@@ -18,3 +18,11 @@
 .dereserving {
 	background-color: lightslategray;
 }
+
+.newly_reserved {
+	background-color: limegreen;
+}
+
+.res_failed {
+	background-color: black;
+}

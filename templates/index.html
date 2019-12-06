@@ -2,14 +2,14 @@
 {% block content %}
 <div class="row">
 	{% for date in dates %}
-		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+		<div class="col-xs-1 col-sm-1 col-lg-1">
 			<div class="row">&nbsp;</div>
 			<div class="row">&nbsp;</div>
 			{% for time in times %}
 				<div class="row">{{ time }}</div>
 			{% endfor %}
 		</div>
-		<div class="col-xs-11 col-sm-5 col-md-3 col-lg-2">
+		<div class="col-xs-11 col-sm-5 col-lg-2">
 			{{ date }}
 			<div class="container-fluid">
 			<div class="row">
@@ -19,7 +19,7 @@
 					{% for time in times %}
 						<div class="row">
 							&nbsp;
-							<div id="{{ machine+'-'+date+'-'+time|string }}" onclick="slot_onclick(this.id);" class="slot free"></div>
+							<div id="{{ machine+delim+date+delim+time|string }}" onclick="slot_onclick(this.id);" class="slot free"></div>
 						</div>
 					{% endfor %}
 					</div>
@@ -37,9 +37,9 @@
 		{% endfor %}
 	</select>
 	<select id="apartment">
-		<option selected disabled>Apartment</option>
+		<option selected disabled value="">Apartment</option>
 		{% for apartment in apartments %}
-			<option>{{ apartment|string }}</option>
+			<option value="{{ apartment|int }}">{{ apartment|string }}</option>
 		{% endfor %}
 	</select>
 	<input type="text" id="passcode" placeholder="Passcode">
@@ -54,7 +54,7 @@
 
 	let reservations = JSON.parse( {{ reservations|tojson|safe }} );
 	for (let reservation of reservations) {
-		let slot = document.getElementById(reservation.machine+'-'+reservation.day+'.'+reservation.month+'.-'+reservation.hour);
+		let slot = document.getElementById(reservation.machine+'{{ delim|string }}'+reservation.day+'.'+reservation.month+'.'+'{{ delim|string }}'+reservation.hour);
 		if (slot != null) {
 			slot.classList.replace('free', 'reserved');
 		}
