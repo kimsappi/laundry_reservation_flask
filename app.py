@@ -6,7 +6,7 @@ import json
 import sys
 
 # Configuration
-day_count = 4
+day_count = 5
 machines = ['W1', 'W2', 'D1', 'D2']
 times = [7, 21]
 db_uri = 'sqlite:///reservations.db'

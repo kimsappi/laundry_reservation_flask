@@ -1,11 +1,23 @@
 {% extends "layout.html" %}
+
+{% block head %}
+<style>
+#slot_grid { grid-template-columns: repeat( {{ dates|length }}, 1fr); }
+#day_grid { grid-template-columns: 2fr repeat( {{ machines|length}}, 3fr); }
+@media only screen and (min-width: {{ dates|length * 15 + 2 }}em) {
+	body {
+		width: {{ dates|length * 15 }}em;
+		margin: auto;
+	}
+}
+</style>
+{% endblock head %}
+
 {% block content %}
 <div id="slot_grid">
 	{% for date in dates %}
-		<div class="date">{{ date }}</div>
-	{% endfor %}
-	{% for date in dates %}
 		<div id="day_grid">
+			<div class="date">{{ date }}</div>
 			<div>&nbsp;</div> <!-- Placeholder for the time column -->
 			{% for machine in machines %}
 				<div class="machine">{{ machine }}</div>
