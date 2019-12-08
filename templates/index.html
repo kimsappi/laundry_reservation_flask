@@ -2,16 +2,16 @@
 {% block content %}
 <div id="slot_grid">
 	{% for date in dates %}
-		<div>{{ date }}</div>
+		<div class="date">{{ date }}</div>
 	{% endfor %}
 	{% for date in dates %}
 		<div id="day_grid">
 			<div>&nbsp;</div> <!-- Placeholder for the time column -->
 			{% for machine in machines %}
-				<div>{{ machine }}</div>
+				<div class="machine">{{ machine }}</div>
 			{% endfor %}
 			{% for time in times %}
-				<div>{{ time }}</div>
+				<div class="time">{{ time }}</div>
 				{% for machine in machines %}
 					<div id="{{ machine+delim+date+delim+time|string }}" onclick="slot_onclick(this.id);" class="slot free"></div>
 				{% endfor %}
@@ -52,6 +52,10 @@
 		let slot = document.getElementById(reservation.machine+'{{ delim|string }}'+reservation.day+'.'+reservation.month+'.'+'{{ delim|string }}'+reservation.hour);
 		if (slot != null) {
 			slot.classList.replace('free', 'reserved');
+			let slot_holder = document.createElement('div');
+			slot_holder.classList.add('slot_holder');
+			slot_holder.innerText = reservation.slot_holder;
+			slot.appendChild(slot_holder);
 		}
 	}
 </script>

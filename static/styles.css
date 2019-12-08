@@ -12,14 +12,21 @@
 	height: 1em;
 	width: 1em;
 	display: inline-block;
+	margin: auto;
+}
+
+.machine, .date {
+	width: 100%;
+	text-align: center;
+}
+
+.time {
+	width: 100%;
+	text-align: right;
 }
 
 .free {
 	background-color: lightblue;
-}
-
-.reserved {
-	background-color: maroon;
 }
 
 .reserving {
@@ -36,4 +43,23 @@
 
 .res_failed {
 	background-color: black;
+}
+
+.reserved {
+	background-color: maroon;
+}
+
+.slot_holder {
+	visibility: hidden;
+	z-index: 10;
+	background-color: lightgray;
+	border: 1px solid black;
+	border-radius: 5px;
+	position: relative;
+	bottom: 120%;
+	width: max-content;
+}
+
+.reserved:hover .slot_holder {
+	visibility: visible;
 }

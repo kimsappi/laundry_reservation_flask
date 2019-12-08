@@ -56,9 +56,9 @@ def reserve():
 		if reservations.first() is not None:
 			res_failed.append(reserve)
 		else:
-			db.execute(f"""INSERT INTO reservations (machine, day, month, hour, cancellation_code) VALUES
+			db.execute(f"""INSERT INTO reservations (machine, day, month, hour, cancellation_code, slot_holder) VALUES
 				("{r_split[0]}", {r_split[1].split(".")[0]}, {r_split[1].split(".")[1]}, {r_split[2]},
-				"{data.get('cancellation_code')}");""")
+				"{data.get('cancellation_code')}", "{data.get('stair')+data.get('apartment')}");""")
 			res_success.append(reserve)
 	cancel_failed = []
 	cancel_success = []

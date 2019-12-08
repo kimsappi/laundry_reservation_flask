@@ -8,6 +8,7 @@ CREATE TABLE reservations (
 	hour INTEGER NOT NULL,
 	cancellation_code VARCHAR(50),
 	machine VARCHAR(20) NOT NULL,
+	slot_holder VARCHAR(20) NOT NULL,
 	FOREIGN KEY (machine) REFERENCES machines(id),
 	PRIMARY KEY (machine,day,month,hour)
 );
@@ -17,5 +18,5 @@ INSERT INTO machines VALUES('W2');
 INSERT INTO machines VALUES('D1');
 INSERT INTO machines VALUES('D2');
 
-INSERT INTO reservations VALUES(9, 12, 15, 123, 'W1');
-INSERT INTO reservations VALUES(9, 12, 15, 'abc', 'D1');
+INSERT INTO reservations VALUES(9, 12, 15, 123, 'W1', 'A1');
+INSERT INTO reservations VALUES(9, 12, 15, 'abc', 'D1', 'A1');
