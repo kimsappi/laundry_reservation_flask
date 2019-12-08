@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from sqlalchemy import create_engine
+from validate_passcode import validate_passcode
 import datetime
 import json
 import os
@@ -67,7 +68,7 @@ def reserve():
 	for reserve in data.get('reserved'):
 		r_split = reserve.split(delimiter)
 		reservations = db.execute(f'SELECT month FROM reservations WHERE machine="{r_split[0]}" AND day={r_split[1].split(".")[0]} AND month={r_split[1].split(".")[1]} AND hour={r_split[2]};')
-		if reservations.first() is not None:
+		if reservations.first() is not None or validate_passcode(data) == False:
 			res_failed.append(reserve)
 		else:
 			db.execute(f"""INSERT INTO reservations (machine, day, month, hour, cancellation_code, slot_holder) VALUES
