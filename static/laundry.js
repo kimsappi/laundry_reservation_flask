@@ -1,3 +1,10 @@
+function add_slot_holder(parent, slot_holder) {
+	let div = document.createElement('div');
+	div.classList.add('slot_holder');
+	div.innerText = slot_holder;
+	parent.appendChild(div);
+}
+
 function validate_inputs()
 {
 	let submission_error = ''
@@ -39,6 +46,11 @@ function submission_results(response) {
 			user_res.splice(index, 1);
 		}
 		document.getElementById(slot).classList.replace('reserving', 'newly_reserved');
+		let stair = document.getElementById('stair');
+		stair = stair.options[stair.selectedIndex].value;
+		let apartment = document.getElementById('apartment');
+		apartment = apartment.options[apartment.selectedIndex].value;
+		add_slot_holder(document.getElementById(slot), stair+apartment);
 	}
 	for (let slot of response.cancel_success) {
 		document.getElementById(slot).classList.replace('dereserving', 'free');

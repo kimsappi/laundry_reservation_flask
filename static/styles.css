@@ -49,10 +49,6 @@
 	background-color: lightslategray;
 }
 
-.newly_reserved {
-	background-color: salmon;
-}
-
 .res_failed {
 	background-color: black;
 }
@@ -61,17 +57,22 @@
 	background-color: maroon;
 }
 
+.newly_reserved {
+	background-color: salmon;
+}
+
 .slot_holder {
 	visibility: hidden;
 	z-index: 10;
 	background-color: lightgray;
+	padding: 2px;
 	border: 1px solid black;
 	border-radius: 5px;
 	position: relative;
-	bottom: 120%;
+	bottom: 50%;
 	width: max-content;
 }
 
-.reserved:hover .slot_holder {
+.reserved:hover .slot_holder, .newly_reserved:hover .slot_holder {
 	visibility: visible;
 }

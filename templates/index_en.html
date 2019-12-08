@@ -64,10 +64,7 @@
 		let slot = document.getElementById(reservation.machine+'{{ delim|string }}'+reservation.day+'.'+reservation.month+'.'+'{{ delim|string }}'+reservation.hour);
 		if (slot != null) {
 			slot.classList.replace('free', 'reserved');
-			let slot_holder = document.createElement('div');
-			slot_holder.classList.add('slot_holder');
-			slot_holder.innerText = reservation.slot_holder;
-			slot.appendChild(slot_holder);
+			add_slot_holder(slot, reservation.slot_holder);
 		}
 	}
 </script>
