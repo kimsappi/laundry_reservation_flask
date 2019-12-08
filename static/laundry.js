@@ -75,23 +75,22 @@ function submission_results(response) {
 	if (failure_alert != '') {
 		alert(failure_alert + 'Reload page to see current state.');
 	}
+	else {
+		alert('All reservations/cancellations succeeded.')
+	}
 }
 
 function submit_changes() {
 	let inputs = validate_inputs();
 	if (inputs != null) {
-		$.ajax({
-			type:			"POST",
-			url:			'/reserve',
-			data:			JSON.stringify(inputs),
-			success:		function(response) {
-								submission_results(response);
-							},
-			contentType:	'application/json',
-			error: 			function() {
-								alert('There was a problem with the server');
-			}
-		});
+		let xhr = new XMLHttpRequest;
+		xhr.open('POST', '/reserve');
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.onload = function() {
+			if (xhr.status == 200) {submission_results(JSON.parse(xhr.responseText));}
+			else {alert('There was a problem with the server.')}
+		};
+		xhr.send(JSON.stringify(inputs));
 	}
 }
 

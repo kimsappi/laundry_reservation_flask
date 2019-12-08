@@ -1,6 +1,17 @@
+#slot_grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+#day_grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+}
+
 .slot {
 	height: 1em;
 	width: 1em;
+	display: inline-block;
 }
 
 .free {
@@ -12,7 +23,7 @@
 }
 
 .reserving {
-	background-color: salmon;
+	background-color: royalblue;
 }
 
 .dereserving {
@@ -20,7 +31,7 @@
 }
 
 .newly_reserved {
-	background-color: limegreen;
+	background-color: salmon;
 }
 
 .res_failed {

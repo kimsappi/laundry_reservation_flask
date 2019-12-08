@@ -19,15 +19,23 @@ db = create_engine(db_uri)
 dates = [None] * day_count
 dates_formatted = [None] * day_count
 
-def dates_init():
+def day_change():
 	for i in range(day_count):
-		dates[i] = (datetime.datetime.today() + datetime.timedelta(days=i))
+		dates[i] = (datetime.datetime.now() + datetime.timedelta(days=i))
 		dates_formatted[i] = (f'{dates[i].day}.{dates[i].month}.')
+	day = dates[0].day
+	month = dates[0].month
+	db.execute(f"""DELETE FROM reservations WHERE month={month} AND day<{day}""")
+	if month < 12:
+		db.execute(f"""DELETE FROM reservations WHERE month<{month}""")
+	if month == 1:
+		db.execute(f"""DELETE FROM reservations WHERE month=12""")
 
 @app.route('/')
 def index():
 	if not dates[0] or dates[0] != datetime.datetime.today():
-		dates_init()
+		day_change()
+	day_change()
 	reservations = db.execute('SELECT * FROM reservations;')
 	reservations_json = '['
 	for reservation in reservations:
