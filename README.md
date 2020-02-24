@@ -1,5 +1,7 @@
 # About
-Simple Python Flask + SQLite laundry reservation web app. Has no front-end dependencies (no CSS/JS framework, not even jQuery).
+Simple Python Flask + SQLite laundry reservation web app. Has no front-end dependencies (no CSS/JS frameworks/libraries).
+
+There is a demo available on [Heroku](http://kimsappi-laundry-demo.herokuapp.com/). All data is reset after 30 minutes of inactivity on the demo.
 
 # Instructions
 ## Running the server
@@ -10,12 +12,12 @@ cd laundry
 pip3 install flask sqlalchemy
 python3 app.py
 ```
-There is also a Dockerfile available. The port is 8080.
+There is also a Dockerfile available.
 
 ## Accessing the app
-Point your browser to http://localhost:8080 or http://0.0.0.0:8080.
+Point your browser to http://localhost:5000 or http://0.0.0.0:5000.
 
 # TODO
 * SQL injection prevention
 * Input validity checking
-* UI 
+* UI
